@@ -6,10 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import org.apache.derby.client.am.ClientResultSet;
 
 /**
- * @since 8:10_24.04.2024
+ * @since 9:50_11.06.2024
  * @author Daniils_Dacenko_PR-21
  */
 public class UserData {
@@ -67,7 +66,7 @@ public class UserData {
                         userList.add(new Student(id, rights, name, surname, nickname, password, testidlist, pointlist));
                         break;
                     }
-                    case "Techer": {
+                    case "Teacher": {
                         userList.add(new Teacher(id, rights, name, surname, nickname, password, testidlist, pointlist));
                         break;
                     }

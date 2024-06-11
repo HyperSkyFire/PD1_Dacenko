@@ -1,7 +1,10 @@
 package Users;
 
+import Tests.Test;
+import Tests.TestData;
+
 /**
- *
+ * @since 9:50_11.06.2024
  * @author User
  */
 public class User {
@@ -14,6 +17,7 @@ public class User {
     private String password;
     private int[] testidlist;
     private int[] pointlist;
+    private Test[] testlist;
 
     public String getName() {
         return name;
@@ -27,17 +31,26 @@ public class User {
         return rights;
     }
 
-    public User(int id, String rights, String name, String surname, String nickname, String password, int[] testlist, int[] pointlist) {
+    public User(int id, String rights, String name, String surname, String nickname, String password, int[] testidlist, int[] pointlist) {
         this.id = id;
         this.rights = rights;
         this.name = name;
         this.surname = surname;
         this.nickname = nickname;
         this.password = password;
-        this.testidlist = testlist;
+        this.testidlist = testidlist;
         this.pointlist = pointlist;
+        this.testlist = new Test[testidlist.length];
+        for (int i = 0; i < testidlist.length; i++) {
+            testlist[i] = TestData.getTest(testidlist[i]);
+        }
+        
     }
 
+    public Test[] getTestlist() {
+        return testlist;
+    }
+    
     public int getId() {
         return id;
     }

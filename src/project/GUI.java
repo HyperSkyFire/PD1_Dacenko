@@ -1,9 +1,13 @@
+package project;
 
+import Tests.TestData;
 import Users.User;
 import Users.UserData;
+import javax.swing.DefaultListModel;
+import questions.QuestionData;
 
 /**
- * @since 8:10_24.04.2024
+ * @since 9:50_11.06.2024
  * @author Daniils_Dacenko_PR-21
  */
 public class GUI extends javax.swing.JFrame {
@@ -22,6 +26,8 @@ public class GUI extends javax.swing.JFrame {
             e.printStackTrace();
         }
         UserData.updateUserList();
+        TestData.updateTestList();
+        QuestionData.updateQuestionList();
     }
 
     @SuppressWarnings("unchecked")
@@ -184,9 +190,7 @@ public class GUI extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(99999, 99999));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(900, 600));
 
         jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
         jTabbedPane1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -900,43 +904,67 @@ public class GUI extends javax.swing.JFrame {
         jTabbedPane1.setSelectedComponent(jPanel3);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    void update(int id) {
+        UserData.updateUserList();
+        TestData.updateTestList();
+        QuestionData.updateQuestionList();
+        user = UserData.getUser(id);
+        switch (user.getRights()) {
+            case "Guest": {
+                jTabbedPane1.setSelectedComponent(jPanel7);
+                jLabel4.setText(user.getName() + " " + user.getSurname());
+                jLabel6.setText(user.getRights());
+                break;
+            }
+            case "Student": {
+                jTabbedPane1.setSelectedComponent(jPanel10);
+                jLabel5.setText(user.getName() + " " + user.getSurname());
+                jLabel7.setText(user.getRights());
+                jList1.removeAll();
+                DefaultListModel model = new DefaultListModel();
+                for (int i = 0; i < user.getTestlist().length; i++) {
+                    model.addElement(user.getTestlist()[i].getName());
+                }
+                jList1.setModel(model);
+                break;
+            }
+            case "Teacher": {
+                jTabbedPane1.setSelectedComponent(jPanel12);
+                jLabel9.setText(user.getName() + " " + user.getSurname());
+                jLabel10.setText(user.getRights());
+                jList2.removeAll();
+                DefaultListModel model = new DefaultListModel();
+                for (int i = 0; i < user.getTestlist().length; i++) {
+                    model.addElement(user.getTestlist()[i].getName());
+                }
+                jList2.setModel(model);
+                break;
+            }
+            case "Admin": {
+                jTabbedPane1.setSelectedComponent(jPanel7);
+                jLabel4.setText(user.getName() + " " + user.getSurname());
+                jLabel6.setText(user.getRights());
+                break;
+            }
+        }
+    }
+
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         String enterNickname = jTextField2.getText();
         String enterPassword = jPasswordField2.getText();
         int id = UserData.isUserExists(enterNickname, enterPassword);
-        if (id > 0) {
-            user = UserData.getUser(id);
-            switch (user.getRights()) {
-                case "Guest": {
-                    jTabbedPane1.setSelectedComponent(jPanel7);
-                    jLabel4.setText(user.getName() + " " + user.getSurname());
-                    jLabel6.setText(user.getRights());
-                    break;
-                }
-                case "Student": {
-                    jTabbedPane1.setSelectedComponent(jPanel10);
-                    jLabel5.setText(user.getName() + " " + user.getSurname());
-                    jLabel7.setText(user.getRights());
-                    break;
-                }
-                case "Teacher": {
-                    jTabbedPane1.setSelectedComponent(jPanel12);
-                    jLabel9.setText(user.getName() + " " + user.getSurname());
-                    jLabel10.setText(user.getRights());
-                    break;
-                }
-                case "Admin": {
-                    jTabbedPane1.setSelectedComponent(jPanel7);
-                    jLabel4.setText(user.getName() + " " + user.getSurname());
-                    jLabel6.setText(user.getRights());
-                    break;
-                }
+        if (!enterNickname.isEmpty() && !enterPassword.isEmpty()) {
+            if (id > 0) {
+                update(id);
+            } else if (id == -2) {
+                jTextPane2.setText("Lietotajvards neeksiste");
+                jDialog2.setVisible(true);
+            } else if (id == -1) {
+                jTextPane2.setText("Parole neatbilst");
+                jDialog2.setVisible(true);
             }
-        } else if (id == -2) {
-            jTextPane2.setText("Lietotajvards neeksiste");
-            jDialog2.setVisible(true);
-        } else if (id == -1) {
-            jTextPane2.setText("Parole neatbilst");
+        } else {
+            jTextPane2.setText("Ne visi lauki ir aizpilditi");
             jDialog2.setVisible(true);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -951,21 +979,26 @@ public class GUI extends javax.swing.JFrame {
         String enterNickname = jTextField5.getText();
         String enterPassword = jPasswordField1.getText();
         String enterPasswordCheck = jPasswordField3.getText();
-
-        if (UserData.isUserExists(enterNickname, enterPassword) == -2) {
-            if (enterPassword.equals(enterPasswordCheck)) {
-                user = UserData.addUser(enterName, enterSurname, enterNickname, enterPassword);
-                jTabbedPane1.setSelectedComponent(jPanel7);
-                jLabel4.setText(user.getName() + " " + user.getSurname());
-                jLabel6.setText(user.getRights());
+        if (!enterName.isEmpty() && !enterSurname.isEmpty() && !enterNickname.isEmpty() && !enterPassword.isEmpty() && !enterPasswordCheck.isEmpty()) {
+            if (UserData.isUserExists(enterNickname, enterPassword) == -2) {
+                if (enterPassword.equals(enterPasswordCheck)) {
+                    user = UserData.addUser(enterName, enterSurname, enterNickname, enterPassword);
+                    jTabbedPane1.setSelectedComponent(jPanel7);
+                    jLabel4.setText(user.getName() + " " + user.getSurname());
+                    jLabel6.setText(user.getRights());
+                } else {
+                    jTextPane2.setText("Paroles nesakrīt");
+                    jDialog2.setVisible(true);
+                }
             } else {
-                jTextPane2.setText("Paroles nesakrīt");
+                jTextPane2.setText("Lietotāja vārds jau pastāv");
                 jDialog2.setVisible(true);
             }
         } else {
-            jTextPane2.setText("Lietotāja vārds jau pastāv");
+            jTextPane2.setText("Ne visi lauki ir aizpilditi");
             jDialog2.setVisible(true);
         }
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
@@ -1006,7 +1039,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        // TODO add your handling code here:
+        update(user.getId());
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
@@ -1015,7 +1048,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
+        update(user.getId());
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
@@ -1028,7 +1061,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
+        update(user.getId());
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
