@@ -9,21 +9,41 @@ public class Question {
     int id;
     String type;
     String question;
-    String[] correctAnswers;
-    int[] wrongAnswers;
+    String[] answerlist;
+    int[] correctanswerlist;
     int points;
 
-    public Question(int id, String type, String question, String[] correctAnswers, int[] wrongAnswers, int points) {
+    public Question(int id, String type, String question, String[] answerlist, int[] correctanswerlist, int points) {
         this.id = id;
         this.type = type;
         this.question = question;
-        this.correctAnswers = correctAnswers;
-        this.wrongAnswers = wrongAnswers;
+        this.answerlist = answerlist;
+        this.correctanswerlist = correctanswerlist;
         this.points = points;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public int[] getCorrectanswerlist() {
+        return correctanswerlist;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public String[] getAnswerlist() {
+        return answerlist;
     }
     
     

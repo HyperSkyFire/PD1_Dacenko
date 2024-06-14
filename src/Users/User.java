@@ -62,4 +62,13 @@ public class User {
     public String getNickname() {
         return nickname;
     }
+
+    public int[] getPointlist() {
+        return pointlist;
+    }
+
+    public int[] getTestidlist() {
+        return testidlist;
+    }
+    
 }

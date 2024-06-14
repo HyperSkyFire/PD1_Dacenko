@@ -41,7 +41,7 @@ public class QuestionData {
                 int id = rs.getInt(1);
                 String type = rs.getString(2);
                 String question = rs.getString(3);
-                String[] answerlist = rs.getString(4).split(" ");
+                String[] answerlist = rs.getString(4).split(";");
                 int[] correctansweridlist = new int[0];
                 String[] buf = rs.getString(5).split(" ");
                 correctansweridlist = new int[buf.length];

@@ -40,5 +40,25 @@ public class Test {
     public String getName() {
         return name;
     }
+
+    public int getTime() {
+        return time;
+    }
+
+    public int getPointcount() {
+        return pointcount;
+    }
+
+    public Question[] getQuestionlist() {
+        return questionlist;
+    }
+
+    public String getSince() {
+        return since;
+    }
+
+    public String getUntil() {
+        return until;
+    }
     
 }

@@ -42,7 +42,7 @@ public class UserData {
                 String nickname = rs.getString(5);
                 String password = rs.getString(6);
                 int[] testidlist = new int[0];
-                if (rs.getString(7) != null) {
+                if (rs.getString(7) != null && rs.getString(7).length() != 0) {
                     String[] buf = rs.getString(7).split(" ");
                     testidlist = new int[buf.length];
                     for (int i = 0; i < buf.length; i++) {
@@ -50,7 +50,7 @@ public class UserData {
                     }
                 }
                 int[] pointlist = new int[0];
-                if (rs.getString(8) != null) {
+                if (rs.getString(8) != null && rs.getString(8).length() != 0) {
                     String[] buf = rs.getString(8).split(" ");
                     pointlist = new int[buf.length];
                     for (int i = 0; i < buf.length; i++) {
@@ -76,6 +76,7 @@ public class UserData {
                     }
                 }
             }
+            
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -101,6 +102,30 @@ public class UserData {
             if (userList.get(i).getId() == id) {
                 return userList.get(i);
             }
+        }
+        return null;
+    }
+
+    public static User updateUserPointList(int id, int[] pointlist) {
+        try {
+        String rights = getUser(id).getRights();
+        String name = getUser(id).getName();
+        String surname = getUser(id).getSurname();
+        String nickname = getUser(id).getNickname();
+        String password = getUser(id).getPassword();
+        String testIDList = "";
+        for (int i = 0; i < getUser(id).getTestlist().length; i++) {
+            testIDList += getUser(id).getTestlist()[i].getId()+ " ";
+        }
+        String pointList = "";
+        for (int i = 0; i < pointlist.length; i++) {
+            pointList += pointlist[i] + " ";
+        }
+        stat.executeUpdate("UPDATE APP.USERDATA SET RIGHTS = '" + rights + "', NAME = '" + name + "', SURNAME = '" + surname + "', NICKNAME = '" + nickname + "', PASSWORD = '" + password + "', TESTIDLIST = '" + testIDList + "', POINTLIST = '" + pointList + "' WHERE ID = " + id);
+        updateUserList();
+        return getUser(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return null;
     }
