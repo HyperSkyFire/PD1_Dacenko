@@ -13,11 +13,12 @@
 - Izstrādātas saskarnes kontu reģistrācijai un pieteikšanai.
 - Izveidotas viesa, skolēna un skolotāja mājas lapas.
 - Ieviesta klase darbam ar lietotāju datubāzi.
-
-## Tuvākie plāni
 - Klases ieviešana darbam ar testu un jautājumu datubāzēm.
 - Izstrādāts algoritms testu aizpildīšanai ar jautājumiem no datubāzes.
 - Funkcijas izveide, lai parādītu individuālu testu sarakstu sākumlapā.
+- Шzstrādāta poga, lai atjauninātu datus sākumlapā.
+
+## Tuvākie plāni
 - Jautājumu veidņu izstrāde.
 - Testu ar jautājumiem vizualizācija.
 - Funkcijas ieviešana lietotāju atbilžu reģistrēšanai un pārbaudei.
