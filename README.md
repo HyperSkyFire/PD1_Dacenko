@@ -21,18 +21,17 @@
 - Vizualizētu testi ar jautājumiem.
 - Funkcijas ievietota lietotāju atbilžu reģistrēšanai un pārbaudei.
 - Iztradats testu rezultātu ierakstīšana lietotāju datubāzē.
-
-## Tuvākie plāni
 - Testa izpildes laika ierobežojuma ieviešana
 - Pievienot mēģinājumu skaitu 
 - Īstenot skolotāja testu rediģēšanu
 - Īstenot testu izveidi skolotājam
 - Īstenot lietotāju pievienošanu testam
+- Mājas lapas izveide administratoram.
+- Administratora funkcionalitātes izstrāde.
+
+## Tuvākie plāni
+- jUnit testešanu izstrade
 - Pārējo jautājumu veidņu izstrāde.
-- Mājas lapas izveide administratoram.
-- Administratora funkcionalitātes izstrāde.
-- Mājas lapas izveide administratoram.
-- Administratora funkcionalitātes izstrāde.
 
 ## Author
 Daniils Dacenko PR-21
