@@ -6,8 +6,8 @@ package Users;
  */
 public class Guest extends User {
 
-    public Guest(int id, String rights, String name, String surname, String nickname, String password, int[] testlist, int[] pointlist) {
-        super(id, rights, name, surname, nickname, password, testlist, pointlist);
+    public Guest(int id, String rights, String name, String surname, String nickname, String password, int[] testlist, int[] pointlist, int[] attemptlist) {
+        super(id, rights, name, surname, nickname, password, testlist, pointlist, attemptlist);
     }
 
 }

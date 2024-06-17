@@ -1,14 +1,14 @@
-Fri Jun 14 14:06:20 EEST 2024 : Сетевой сервер Apache Derby Network Server - 10.14.2.0 - (1828579) запущен и готов принимать соединения на порту 1527 на {3} 
+Mon Jun 17 14:51:42 EEST 2024 : Apache Derby Network Server - 10.11.1.2 - (1629631) started and ready to accept connections on port 1527
 ----------------------------------------------------------------
-Fri Jun 14 14:06:20 EEST 2024:
- Производится загрузка Derby версии The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): экземпляр a816c00e-0190-166d-4af3-ffffb3ac114a
-в каталоге базы данных F:\Projekta_Darbs\PD1_Dacenko_5\UserDB jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
-
+Mon Jun 17 14:51:43 EEST 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.2 - (1629631): instance a816c00e-0190-2609-eab3-ffff9ec34909 
+on database directory E:\Projekta_Darbs\PD1_Dacenko_5\UserDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@73d16e93 
+Loaded from file:/C:/Program%20Files/Java/jdk1.8.0_111/db/lib/derby.jar
 java.vendor=Oracle Corporation
 java.runtime.version=15.0.2+7-27
-user.dir=C:\Program Files\Java\jdk1.8.0_111\db-derby-10.14.2.0-bin
+user.dir=C:\Program Files\Java\jdk1.8.0_111\db
 os.name=Windows 10
 os.arch=amd64
 os.version=10.0
-derby.system.home=F:\Projekta_Darbs\PD1_Dacenko_5
-Запущен загрузчик классов базы данных - derby.database.classpath=''
+derby.system.home=E:\Projekta_Darbs\PD1_Dacenko_5
+Database Class Loader started - derby.database.classpath=''

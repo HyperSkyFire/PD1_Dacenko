@@ -16,6 +16,7 @@ import java.util.ArrayList;
  * @author Daniils_Dacenko_PR-21
  */
 public class QuestionData {
+
     private static Connection con;
     private static Statement stat;
     private static ResultSet rs = null;
@@ -57,6 +58,19 @@ public class QuestionData {
         }
     }
 
+    public static void deleteQuestion(int id) {
+        try {
+            for (int i = 0; i < questionList.size(); i++) {
+                if (questionList.get(i).getId() == id) {
+                    stat.execute("DELETE FROM APP.QUESTIONDATA WHERE ID = " + id);
+                }
+            }
+            updateQuestionList();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static Question getQuestion(int id) {
         updateQuestionList();
         for (int i = 0; i < questionList.size(); i++) {
@@ -66,4 +80,54 @@ public class QuestionData {
         }
         return null;
     }
+
+    public static void updateQuestion(int id, String type, String question, String[] answerlist, int[] correctansweridlist, int points) {
+        try {
+            String buf1 = "";
+            for (int i = 0; i < answerlist.length; i++) {
+                buf1 += answerlist[i] + ";";
+            }
+            String buf2 = "";
+            for (int i = 0; i < correctansweridlist.length; i++) {
+                buf2 += correctansweridlist[i] + " ";
+            }
+            stat.executeUpdate("UPDATE APP.QUESTIONDATA SET TYPE = '" + type + "', QUESTION = '" + question + "', ANSWERLIST = '" + buf1 + "', CORRECTANSWERIDLIST = '" + buf2 + "', POINTS = " + points + " WHERE ID = " + id);
+            updateQuestionList();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Question addQuestion(String type, String question, String[] answerlist, int[] correctansweridlist, int points) {
+        try {
+            String buf1 = "";
+            for (int i = 0; i < answerlist.length; i++) {
+                buf1 += answerlist[i] + ";";
+            }
+            String buf2 = "";
+            for (int i = 0; i < correctansweridlist.length; i++) {
+                buf2 += correctansweridlist[i] + " ";
+            }
+            stat.executeUpdate("INSERT INTO APP.QUESTIONDATA (TYPE, QUESTION, ANSWERLIST, CORRECTANSWERIDLIST, POINTS) VALUES ('" + type + "','" + question + "','" + buf1 + "','" + buf2 + "'," + points + ")");
+            updateQuestionList();
+            return questionList.get(questionList.size() - 1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
 }
+/*
+CREATE TABLE "QUESTIONDATA"
+(
+    "ID" INT NOT NULL PRIMARY KEY
+        GENERATED ALWAYS AS IDENTITY
+        (START WITH 1, INCREMENT BY 1),
+    "TYPE" VARCHAR(20),
+    "QUESTION" VARCHAR(100),
+    "ANSWERLIST" VARCHAR(400),
+    "CORRECTANSWERIDLIST" VARCHAR(20),
+    "POINTS" INT
+)
+ */

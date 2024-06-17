@@ -15,22 +15,28 @@ public class Test {
     int[] questionidlist;
     Question[] questionlist;
     int pointcount;
-    String since;
-    String until;
     int time;
+    int attemptcount;
 
-    public Test(int id, String name, int[] questionidlist, int pointcount, String since, String until, int time) {
+    public Test(int id, String name, int[] questionidlist, int pointcount, int time, int attemptcount) {
         this.id = id;
         this.name = name;
         this.questionidlist = questionidlist;
         this.pointcount = pointcount;
-        this.since = since;
-        this.until = until;
         this.time = time;
+        this.attemptcount = attemptcount;
         this.questionlist = new Question[questionidlist.length];
         for (int i = 0; i < questionlist.length; i++) {
             questionlist[i] = QuestionData.getQuestion(questionidlist[i]);
         }
+    }
+
+    public int[] getQuestionidlist() {
+        return questionidlist;
+    }
+
+    public int getAttemptcount() {
+        return attemptcount;
     }
 
     public int getId() {
@@ -52,13 +58,4 @@ public class Test {
     public Question[] getQuestionlist() {
         return questionlist;
     }
-
-    public String getSince() {
-        return since;
-    }
-
-    public String getUntil() {
-        return until;
-    }
-    
 }

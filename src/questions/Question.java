@@ -6,12 +6,12 @@ package questions;
  * @author Daniils_Dacenko_PR-21
  */
 public class Question {
-    int id;
-    String type;
-    String question;
-    String[] answerlist;
-    int[] correctanswerlist;
-    int points;
+    private int id;
+    private String type;
+    private String question;
+    private String[] answerlist;
+    private int[] correctanswerlist;
+    private int points;
 
     public Question(int id, String type, String question, String[] answerlist, int[] correctanswerlist, int points) {
         this.id = id;
