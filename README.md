@@ -16,13 +16,21 @@
 - Klases ieviešana darbam ar testu un jautājumu datubāzēm.
 - Izstrādāts algoritms testu aizpildīšanai ar jautājumiem no datubāzes.
 - Funkcijas izveide, lai parādītu individuālu testu sarakstu sākumlapā.
-- Шzstrādāta poga, lai atjauninātu datus sākumlapā.
+- Izstrādāta poga, lai atjauninātu datus sākumlapā.
+- Iztradata jautājumu veidne ar radio pogas.
+- Vizualizētu testi ar jautājumiem.
+- Funkcijas ievietota lietotāju atbilžu reģistrēšanai un pārbaudei.
+- Iztradats testu rezultātu ierakstīšana lietotāju datubāzē.
 
 ## Tuvākie plāni
-- Jautājumu veidņu izstrāde.
-- Testu ar jautājumiem vizualizācija.
-- Funkcijas ieviešana lietotāju atbilžu reģistrēšanai un pārbaudei.
-- Testu rezultātu ierakstīšana lietotāju datubāzē.
+- Testa izpildes laika ierobežojuma ieviešana
+- Pievienot mēģinājumu skaitu 
+- Īstenot skolotāja testu rediģēšanu
+- Īstenot testu izveidi skolotājam
+- Īstenot lietotāju pievienošanu testam
+- Pārējo jautājumu veidņu izstrāde.
+- Mājas lapas izveide administratoram.
+- Administratora funkcionalitātes izstrāde.
 - Mājas lapas izveide administratoram.
 - Administratora funkcionalitātes izstrāde.
 
